@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int peakIndexInMountainArray(vector<int>& arr) {
+        int lo=0,hi=arr.size()-1,mid;
+        while(lo<hi){
+            mid=lo+(hi-lo)/2;
+            if(arr[mid]<=arr[mid+1]){ //we need to increment lo
+                lo++;
+            }
+            else{
+                hi--;
+            }
+            mid=lo+(hi-lo)/2;
+        }
+        return lo;
+    }
+};
+
+//Observation:-
+//Left ->peak->right
+// left:- arr[i]<arr[i+1]
+//Right:- arr[i]>arr[i+1]
+//Peak:-  arr[i-1]<arr[i]>arr[i+1}
