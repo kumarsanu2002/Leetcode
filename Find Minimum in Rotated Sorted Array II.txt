@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+           int lo = 0;
+        int hi = nums.size() - 1;
+        int mid = 0;
+        
+        while(lo < hi) {
+            mid = lo + (hi - lo) / 2;
+            
+            if (nums[mid] > nums[hi]) {
+                lo = mid + 1; //it means min will be in right part
+            }
+            else if (nums[mid] < nums[hi]) {
+                hi = mid;  
+            }
+            else { // when num[mid]==num[hi] only hi because min must be in hi or right side 
+                hi--;
+               
+            }
+        }
+        return nums[lo];
+    }
+};
+
+
+ //if mid will greter than hi it means at after mid rotated array will and it abous. will be min elment as it is sorted
+ //2  2 2 2 | 0 1 if(mid==hi) lhi--;
+ // if mid>lo then toget min element we have to return mid+1.
