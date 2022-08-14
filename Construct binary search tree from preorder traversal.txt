@@ -1,0 +1,15 @@
+class Solution {
+public: //simple preorder recursive code taking lb=0 and ub=INT_MAX.
+    TreeNode* bstFromPreorder(vector<int>& preorder) {
+        int i=0;
+        return solve(preorder,i,INT_MAX);
+    }
+    
+    TreeNode*solve(vector<int>& preorder,int &i,int ub){
+         if(i==preorder.size() || preorder[i]>ub)  return NULL;
+        TreeNode*temp= new TreeNode(preorder[i++]);
+        temp->left=solve(preorder,i,temp->val); //from start to mid 
+        temp->right=solve(preorder,i,ub);
+        return temp;
+    }
+};  
