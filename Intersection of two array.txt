@@ -1,0 +1,46 @@
+Method 1:-BInary search
+      class Solution {
+public:
+vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        vector<int>ans;
+        for(int i=0;i<nums1.size();i++)
+        {
+            int lb=0,ub=nums2.size()-1,mid=0;
+            while(lb<=ub)
+            {
+                mid=lb+(ub-lb)/2;
+                if(nums2[mid]==nums1[i])
+                {
+                    if(find(ans.begin(),ans.end(),nums2[mid])!=ans.end())
+                        break;
+                    ans.push_back(nums2[mid]);
+                    break;
+                }
+                else if(nums2[mid]<nums1[i])
+                    lb=mid+1;
+                else
+                    ub=mid-1;
+            }
+        }
+        return ans;
+    }
+};
+
+Method 2:-
+  vector<int> intersection(vector<int>& nums1, vector<int>& nums2){
+      // put the values in set to remove duplicateset<int>s1,s2;
+        vector<int>out;
+        for(autoval:nums1)
+            s1.insert(val);
+        for(autoval:nums2)
+            s2.insert(val);
+        
+        //find if we can get the value from first set in second setfor(autoval:s1)
+        {
+           if(s2.find(val)!=s2.end()) //if found push it into output vector out.push_back(val);
+        }
+        return out;
+    }
+};
