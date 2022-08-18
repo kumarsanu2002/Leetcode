@@ -1,0 +1,15 @@
+class Solution { //as it is sorted in accening order therefore root must be at mid.and left 0f mid will be root->left part And right of mid will be root->right part.
+    public:
+       TreeNode* solve(vector<int>& nums,int start ,int end){//we used start and end to find mid
+           if(start>=end) return NULL; //if it be decending order
+           int mid=(start+end)/2;
+           TreeNode*temp= new TreeNode(nums[mid]); //assigh mid as root node
+           temp->left=solve(nums,start,mid); //left of root
+           temp->right=solve(nums,mid+1,end); //right of root
+           
+           return temp;
+       }
+    TreeNode* sortedArrayToBST(vector<int>& nums) {
+         return solve(nums,0,nums.size());
+    }
+};
