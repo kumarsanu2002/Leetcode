@@ -1,0 +1,49 @@
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+       //creatind adj list 
+          unordered_map<int,list<int>>adj;
+        for(int i=0;i<prerequisites.size();i++){
+            int u=prerequisites[i][0];
+            int v=prerequisites[i][1];
+            
+             adj[u].push_back(v);
+        }
+          //creating indegree
+           vector<int>indegree(numCourses);
+        for(auto i:adj){
+             for(auto j:i.second){
+                  indegree[j]++;
+             }
+        }
+        //for all component
+        queue<int>q;
+        for(int i=0 ;i<numCourses;i++){
+         if(indegree[i]==0)
+              q.push(i);
+    }
+    
+             int cnt=0;
+            while(!q.empty()){
+                int front = q.front();
+                 q.pop();
+                
+                 cnt++;
+                 
+                for(auto i:adj[front]){
+                    indegree[i]--;
+                     if(indegree[i]==0)
+                       q.push(i);
+                        
+                }
+            }
+                if(cnt==numCourses) return true;
+                 else return false;
+            
+    }
+};
+
+//here in example 1 to read boo 1 we have to read book 0 
+//in example 2 we have to read book 1 to read book 2 and read book 2 to read book 1 . here we can see cyclic loop 
+// so our ans will be acyclic directed graph.
+//so we writting code of oppite of finding cyclic graph in directed  using bfs
