@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int deepestLeavesSum(TreeNode* root) {
+        int sum =0 ;int n;
+        queue<TreeNode*>q;
+        q.push(root);
+        while(!q.empty()){
+         sum =0 , n=q.size(); //updating at each level to get max sum
+        for(int i=0;i<n;i++){
+            auto n = q.front();
+            q.pop();
+            sum+=n->val;
+            
+            if(n->right) q.push(n->right);
+            if(n->left) q.push(n->left);
+        }
+    }
+    return sum ;
+    }
+};
+//depest leave sum means sum of 7+8=15.so we are going at each level and adding to sum and at each level we are updating sum and size of queue so that it only travers at that level . that means at last after traversing  tree sum will store sum of last left and right part.
