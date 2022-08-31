@@ -1,2 +1,2 @@
 # Leetcode
-My leetcode c++ solution
+My leetcode c++ solution.
