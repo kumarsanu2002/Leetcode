@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+//as we know that xor of two same number==0 and of two different no gives that no so we will take xor with nums[i](no that is present in array) and with i(no that are in particular loop) loop till n. and thn return  n.
+        int n= nums.size();
+        for(int i=0;i<nums.size();i++){
+            n^=nums[i];
+            n^=i;
+           
+        }
+        return n;
+    }
+};
+ 
