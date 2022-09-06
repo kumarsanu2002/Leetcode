@@ -1,0 +1,20 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+      int i=0;int j=0;
+        int size=nums.size();
+        while(j<size){
+            if(nums[j]==0){
+                j++;
+            }
+            else{
+//here if it is not 0 than we swap with first elment so that all element comes at left and 0 will come at right side
+                swap(nums[i],nums[j]);
+                i++;
+                j++;
+            }
+        }
+    }
+        
+        
+};
