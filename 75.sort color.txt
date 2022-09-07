@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        
+//solving it using dutch flag algorithms,in which we take lo=0 ,mid=0 , hi=nums.size()-1.and in this algorithm every element less than low-1 will be 0. every element greater than high+1 will be 2 .and between it will be 1.
+        int lo= 0; int mid =0 ;int hi= nums.size()-1;
+           while(lo<=hi){
+             if(nums[lo]==0){
+                  swap(nums[lo] , nums[mid]);
+                 lo++;
+                 mid++;
+             }
+            else if (nums[lo]==1){ //it is at its position so no need to swap
+                 lo++;   
+            }
+            else if (nums[lo]==2){
+                swap(nums[lo] , nums[hi]);
+                 hi--;
+            }
+           }
+    }
+};
