@@ -1,0 +1,30 @@
+class Solution {
+public:
+     vector<vector<int>>ans;
+    void solve(vector<int>&a,vector<int>& candidates,int target,int index){
+        //base condition
+       if(target==0){
+           ans.push_back(a); 
+           return;
+       }
+       //condition 1
+        if(index>=candidates.size()) return;
+        //condition 2
+        if(target<0)   return ;
+       //recursion 1
+        solve(a,candidates,target,index+1); //as we are increasing index and when index will be grater than candidtes size then condition 1 will be called
+        a.push_back(candidates[index]);
+        //recursion 2
+        solve(a,candidates,target-candidates[index],index); //here we are substracting each number in candidate array to target and when target will be 0 then base condition will be called and it will autometacily be pushed into ans
+        a.pop_back();
+    }
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        ans.clear();//so that it refresh
+        vector<int>a;
+          solve(a,candidates,target,0);
+           return ans;
+    }
+};
+   //recursive call
+//1->increase index
+//2->substract nums[i] from target and if target ==0 then it will be pushed in ans automatically.
