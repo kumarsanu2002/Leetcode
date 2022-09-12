@@ -1,0 +1,29 @@
+class Solution {
+public:
+      
+    void solve(vector<int>a,int index,vector<int>nums,vector<vector<int>>&ans){
+          //base case
+        if(index>=nums.size()){
+            ans.push_back(a);
+            return;
+        }
+        //1st condition exclude
+        solve(a,index+1,nums,ans);
+        //2nd condition include 
+        int s = nums[index]; //we have to include this
+        a.push_back(s);
+        solve(a,index+1,nums,ans);
+    }
+        
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>a;
+        int index=0;
+        solve(a,index,nums,ans);
+        return ans;
+    }
+};
+//power set -->to print subset in all possible way.no of element in power set==2^n.
+//here as we will she that we have to print unique element . so we will call to condition
+//1st-->we will exclude number 
+//2nd-->we will incluede nums number.nums[i] 
