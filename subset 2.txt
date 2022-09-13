@@ -1,0 +1,26 @@
+class Solution {
+public:
+vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> ans;
+        vector<int> row;
+        
+        sort(nums.begin(),nums.end());
+        solve(nums, ans, row, 0);
+        return ans;
+    }
+    void solve(vector<int>& nums, vector<vector<int>>& ans,vector<int>& row, int ind){
+        ans.push_back(row);
+        //here we have to include that elemet which follow below conditins
+        for(int i=ind; i<nums.size(); i++){
+            //i>index becaue i will traverse to whole but index will remain at 0th position.so it is obious that
+            // i will be greater and if i==index then we will not include it.
+            if(i>ind and nums[i]==nums[i-1])
+                continue;
+            row.push_back(nums[i]);
+            solve(nums, ans, row, i+1);
+            row.pop_back();//when we find duplicate
+        }   
+    }
+};
+   //condition
+//i must be greater than index and nums[i]!=nums[i-1]
