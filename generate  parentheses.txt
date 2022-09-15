@@ -1,0 +1,29 @@
+class Solution {
+public:
+    void solve(vector<string>&ans,int n ,int ob, int cb,string s){
+        //base codition
+        if(ob==n && cb==n){
+            ans.push_back(s);
+            return;
+        }
+        if(ob < n){
+             //recursive call
+            solve(ans,n, ob+1,cb,s+"("); //adding one opening bracket
+        }
+         if(cb<ob){
+             //recursive call
+            solve(ans,n, ob,cb+1,s+")");//adding one closing bracket
+        }
+    }
+    
+    vector<string> generateParenthesis(int n) {
+           vector<string>ans;
+               int ob=0 ;
+               int cb=0;
+               solve(ans,n,ob,cb,"");
+               return ans;
+    }
+};
+//condition 1 :-opening bracket count must be less than n.
+//condition 2 :-closing bracket count must be  less than opening count
+//condition 3:- if opening and closing count are same then print it .
