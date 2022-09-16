@@ -1,0 +1,27 @@
+class Solution {
+  private:
+  void  solve(string digits,vector<string>&ans,unordered_map<int ,string>&m ,int index , string temp){
+         if(index>=digits.size()){
+           ans.push_back(temp);
+             return;
+         }
+    string s = m[digits[index]]; //we will push this after findig it in unordered map because we have to make combination form unordered map.
+        for(int i=0;i<s.size();i++){
+            temp.push_back(s[i]);//form unordered map
+            solve(digits,ans,m,index+1,temp);
+            temp.pop_back(); //we write this because in recursion we call back to each //element after reaching last element we then again go to each element by call
+        }
+    }
+    public:
+    vector<string> letterCombinations(string digits) {
+        unordered_map<int ,string>m{{'2',"abc"},{'3',"def"},{'4',"ghi"},{'5',"jkl"},
+                          {'6',"mno"},{'7',"pqrs"},{'8',"tuv"},{'9',"wxyz"}};
+        vector<string>ans;
+         string temp="";
+         if(digits.empty())
+            return ans;
+        solve(digits,ans,m,0,temp);
+        return ans;
+    }
+};
+//approach:- first we have to store all string value for each number then make a call solve function and increase index.
