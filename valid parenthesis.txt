@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        int n= s.size();
+        stack<char>st;
+        for(int i=0;i<n;i++){
+            if(s[i]=='(' || s[i]=='{' || s[i]=='['){
+                st.push(s[i]);
+                continue;
+            }
+            char top =st.top();
+            if(st.empty())   return false;
+if(top=='(' and s[i]==')' || top=='[' and s[i]==']' || top=='{' and s[i]=='}')
+            st.pop();
+            else 
+         return false;
+            
+        }
+    //as we have poped stack element .so it there was valid parentheses then it will be poped so there would be no element in stack if it id valid parenteses  
+            if(st.empty()) return true;
+            else
+            return false;
+    }
+};
