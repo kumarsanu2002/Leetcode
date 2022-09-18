@@ -1,0 +1,38 @@
+class MinStack {
+//basically we will push 2 element in stack val and  x . val==particular element and x==min element .so it is bacssically confirm that in stack we pop the top element. so to get min element it must be at top, and in top it will be second val because first will be val and second will be min element.
+public:
+   stack<pair<int,int>>s;
+    MinStack() { 
+    }
+    void push(int val) {
+        if(s.empty()){
+            s.push({val,val}); //at starting we  will push two element 
+        }
+        else{
+             //here we will push val and min element
+            int x= min(val,s.top().second);//this will give min element
+            s.push({val,x});
+        }
+    }
+    void pop() {
+      if(s.empty()) return ;
+        s.pop(); }
+    int top() {
+         if(s.empty()) return -1;
+    return s.top().first;
+    }
+    
+    int getMin() {
+        //min element will be at top and at second value bacause at first it will be val
+        return s.top().second;
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(val);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
