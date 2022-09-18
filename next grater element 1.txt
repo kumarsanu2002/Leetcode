@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+         unordered_map <int, int> mapp;
+        stack <int> st;
+        vector <int> ans;
+        for(int i=nums2.size()-1; i>=0; i--) {
+            int x = nums2[i];
+            while(!st.empty() && st.top()<=x) {//it means there is next greater element
+                st.pop();
+            }
+            if(st.empty())  mapp[x]=-1;//it meand there is no greater element.
+            else mapp[x]=st.top();
+            st.push(x);
+        }
+        //pushing into final ans.because we have to find greater element of nums1 element
+        for(int i=0; i<nums1.size(); i++) {
+            ans.push_back(mapp[nums1[i]]);
+        }
+        return ans;
+    }
+};
+  //two conditon :-
+    //1st-->at starting stack will be empty then we will push first element .Then we will exicute  our condition that :-
+ //if !s.empty and st.top<=nums2[i],because to be next greater element top should be less than nums1[i]
+//then we will pop it
