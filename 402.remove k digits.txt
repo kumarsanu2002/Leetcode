@@ -1,0 +1,45 @@
+  string removeKdigits(string num, int k) {
+        stack<char>s;
+        s.push(num[0]);//pushing first element
+        for(int i=1;i<num.size();i++){
+            char a=num[i];
+    //K>0 bacause we have something k so that we can perform this while loop.
+    //s.top()>a because as seen in approach,We will remove that element that if greater than it next on
+             while(k>0 and !s.empty() and s.top() > a){
+                 s.pop();
+                 k--;
+             }
+            s.push(a);//we will push remaining element
+ //this conditon is because this dont hace significant so we  will delete it
+            if(s.size()==1 and s.top()=='0'){
+                s.pop();
+        
+            }
+        }
+            //if there is some element that is remaining then we will remove it
+            while(k>0 and !s.empty()){
+                s.pop();
+                k--;
+            }
+            //now we will store our finall answer 
+            string st="";
+            while(!s.empty()){
+                st+=s.top();
+                s.pop();
+            }
+        //we have to reverse ans becaue we are using stack
+        reverse(st.begin(),st.end());
+             return st.size()==0?"0":st;
+        
+    }
+};
+/*
+Approach 1:-
+
+    2 3 14
+
+We will remove that element that if greater than it next one .for example we  will remove 3 because 3 is greater than 1  . And after deleting 3  , 2 will be beside 1 so we will now delete 2 now.
+If we have to remove  k=1 then we will remove first element which is greater than nums{i+1].
+We will remove from fornt  because 345 <435 so basically there is no point to remove digits from back
+
+*/
