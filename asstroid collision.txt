@@ -1,0 +1,39 @@
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& arr) {
+        stack<int>s;
+        int n=arr.size();
+        vector<int>ans;
+        for(int i=0;i<n;i++){
+            //pushing +ve integer first
+            if(s.empty() || arr[i]>0 ){
+                s.push(arr[i]);
+            }
+            else{
+                //condition 1
+                //comparing here with +ve because in stack right now is only +ve no.
+                 while(!s.empty() and abs(arr[i])>s.top() and s.top()>0){
+                     s.pop(); //as in question if collission of two number happen smaller one will destroy so here s.top is smaller so we pop it.
+                 }
+                //condition 2
+                if(!s.empty() and abs(arr[i])==s.top()){
+                    s.pop();//as in question if collosion of two equal size happen then both will destroy so we here pop the top element.
+                }
+                else {
+                    //conditon 3
+                    if(s.empty() || s.top()<0){
+                    s.push(arr[i]);
+                }
+                }
+            }
+        }
+        
+        while(!s.empty()){
+            ans.push_back(s.top());
+            s.pop();
+        }
+        reverse(ans.begin() , ans.end());
+        return ans;
+    }
+};
+//we have pushed +ve integer into stack so that according to qusetion collision will only happen if one element is +ve and another is -ve. so that why we pused +ve itno stack .And then we startes comparing our conditon with stack and arr .because in array there is =ve element to which we have to compare.
