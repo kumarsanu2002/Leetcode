@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums) {
+        stack<int>s;
+        vector<int>ans;
+        //pushed all element into stack
+        for(int i=nums.size()-1;i>=0;i--){
+            s.push(nums[i]);
+        }
+        //here we will check condition for next grater element
+        for(int i=nums.size()-1;i>=0;i--){
+            while(!s.empty() and s.top()<=nums[i]){
+                s.pop();
+            }
+            //if stack is empty that means there is no grater element 
+            if(s.empty()) {
+                ans.push_back(-1);
+            }
+            else {
+                ans.push_back(s.top()); //it means it is grater element
+            }
+            s.push(nums[i]);//this at initial there will no element so we will push it
+        }
+        //here we have to reverse ans because we are using stack
+        reverse(ans.begin() , ans.end());
+        return ans;
+    }
+};
+
+    
