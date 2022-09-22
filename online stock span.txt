@@ -1,0 +1,19 @@
+public:
+    stack<pair<int,int>>s; //<int,int>==<price ,cnt>
+    StockSpanner() {
+        
+    }
+    
+    int next(int price) {
+        int cnt=1;
+        while(!s.empty() and s.top().first<=price){
+            cnt+=s.top().second;
+            s.pop();
+            
+        }
+        //at starting pushing price and cnt into stak
+        s.push({price , cnt});
+        //return ans
+        return cnt;
+    }
+};
