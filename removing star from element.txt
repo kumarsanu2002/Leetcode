@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string removeStars(string s) {
+        //it can be solved usign stack but there is an easy way to solve it
+        string ans; //at starting there will be no element in ans
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='*'){
+                if(ans.size()!=NULL) ans.pop_back();
+            }
+            else ans.push_back(s[i]);
+        }
+        return ans;
+    }
+};
+//at starting there will be no element in ans so when ever we find * then pop the previous one and we will not push * else we will push s[i].
+//exmaple:-*jjjjj -->if starting element is * so that means there is no element in ans so we can pop it out and according to question we have to pop left element that means if * is not at first position so some elemetn must be in ans and it is obious that it will be left element .
