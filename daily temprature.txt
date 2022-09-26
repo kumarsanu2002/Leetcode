@@ -1,0 +1,17 @@
+    vector<int> dailyTemperatures(vector<int>& t) {
+     int n=t.size();
+        stack<int>s;
+        vector<int>ans(n,0);
+        for(int i=0;i<n;i++){
+ //here t[s.top()] means that we are traversing t array from backward direction because s.top means it is reversed and writing t[s.top] implies that it is last element in t array.
+            while(!s.empty() and t[i]>t[s.top()]){
+                //So if temperature 75 at index 3 is being removed 
+                //by temperature 76 at index 5, no. of days = 5-3 = 2;
+                   ans[s.top()]=i-s.top(); //substracting index to get no of days
+                s.pop();
+            }
+            s.push(i); //pushing index 
+        }
+        return ans;
+    }
+}; 
