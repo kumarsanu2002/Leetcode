@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int climbStairs(int n) {
+        //this question is nothing but facbiconn number where arr[i]=arr[i-1]+arr[i-2]
+        if(n==1) return 1;
+        else if(n==2) return 2;
+        int ans=0;
+        int a=1,b=2;  //this is the option 
+        for(int i=3;i<=n;i++){ //for 3 there may be more than 2 method
+            ans=a+b;  //this is last two digit sum
+            a=b;
+            b=ans;
+        }
+        return ans;
+    }
+};
