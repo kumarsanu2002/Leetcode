@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n=nums.size();
+         k=k%n;
+        vector<int>ans(n);
+        int j;
+        //pushing last k element 
+        for(int i=n-k;i<n;i++){
+            ans[j++]=nums[i];
+        }
+        //pushing remaining element
+        for(int i=0;i<n-k;i++){
+            ans[j++]=nums[i];
+        }
+        nums=ans;//assigning nums to ans
+    }
+   
+};
+//approach 1:- we can push n-k to n element  in vector first then we can push remaining element into vector.SC=O(N)
+//approach 2 :-using reverse
