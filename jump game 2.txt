@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        //base condition
+        int n=nums.size();
+        if(n<=1) return 0;
+        if(nums[0]==0) return -1; //no steps to move
+        int steps=nums[0]; //starting element
+        int maxSteps=nums[0]; //starting element
+        int jumps=1;
+        for (int i=1;i<n;i++){
+             if(i==n-1) return jumps; //if it is single  element
+            maxSteps=max(maxSteps,nums[i]+i);//findig max steps so that we can reach end in less no of steps
+            steps--; //every steps we are decrementing steps
+            if(steps==0){ //when moving all give steps then we will increment out jumps 
+                jumps++;             
+             steps=maxSteps-i; //way to count no of steps
+            }
+        }
+        return jumps; 
+    }
+};
+
+ //2 3 1 1 4
+    //steps= if we at 3 then at each step we will decrease step and when it will be zreo the we wil increase jump by 1
+      //steps==nums[i]-1  beacuse of 0th index
+    //maxreach= max reach index= (that elemt + that index) to compare max stwep so that we can reacch last
+    //jumps(ans)=
